@@ -10,6 +10,12 @@ namespace Runn_R
 
 		public static void Main(string[] args)
 		{
+			bool debug = false; // default normal mode
+			if (args.Length > 0 && args[0].Equals("-D"))
+			{
+				debug = true; // enable debug mode
+			}
+
 			try
 			{		
 				readDirTree(Directory.GetCurrentDirectory());
@@ -18,8 +24,16 @@ namespace Runn_R
 				{
 					var rnd = new Random();
 					int idx = rnd.Next(allFiles.Count);
+					string rndFile = @allFiles[idx];
 
-					System.Diagnostics.Process.Start(@allFiles[idx]);
+					if (debug) // debug mode
+					{
+						Console.WriteLine(rndFile);
+					}
+					else // normal mode
+					{
+						System.Diagnostics.Process.Start(rndFile);
+					}
 				}
 			}
 			catch (Exception e)
