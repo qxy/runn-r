@@ -10,36 +10,16 @@ namespace Runn_R
 
 		public static void Main(string[] args)
 		{
-			readDirTree(Directory.GetCurrentDirectory());
-
-			if (allFiles.Count > 0)
-			{
-				var rnd = new Random();
-				int idx = rnd.Next(allFiles.Count);
-	
-				System.Diagnostics.Process.Start(@allFiles[idx]);
-			}
-		}
-
-		static void readDirTree(string path)
-		{
 			try
-			{
-				foreach (string dirName in Directory.GetDirectories(path))
+			{		
+				readDirTree(Directory.GetCurrentDirectory());
+
+				if (allFiles.Count > 0)
 				{
-					// if (crtlC) return;
+					var rnd = new Random();
+					int idx = rnd.Next(allFiles.Count);
 
-					readDirTree(dirName);
-				}
-
-				foreach (string fileName in Directory.GetFiles(path))
-				{
-					// if (crtlC) return;
-
-					if (!Path.GetFileName(fileName).Equals("Runn-R.exe", StringComparison.OrdinalIgnoreCase))
-					{
-						allFiles.Add(fileName);
-					}
+					System.Diagnostics.Process.Start(@allFiles[idx]);
 				}
 			}
 			catch (Exception e)
@@ -47,6 +27,26 @@ namespace Runn_R
 				Console.WriteLine(e.Message);
 				Console.Write("Press any key to continue . . . ");
 				Console.ReadKey(true);
+			}
+		}
+
+		static void readDirTree(string path)
+		{
+			foreach (string dirName in Directory.GetDirectories(path))
+			{
+				// if (crtlC) return;
+
+				readDirTree(dirName);
+			}
+
+			foreach (string fileName in Directory.GetFiles(path))
+			{
+				// if (crtlC) return;
+
+				if (!Path.GetFileName(fileName).Equals("Runn-R.exe", StringComparison.OrdinalIgnoreCase))
+				{
+					allFiles.Add(fileName);
+				}
 			}
 		}
 	}
