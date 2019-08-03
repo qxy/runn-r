@@ -1,4 +1,6 @@
 
-### Runn-R
+## Runn-R
 
-# runs random file from program directory
+Simple command line tool to select random file and open with default program
+
+*Created with SharpDevelop*
