@@ -48,15 +48,11 @@ namespace Runn_R
 		{
 			foreach (string dirName in Directory.GetDirectories(path))
 			{
-				// if (crtlC) return;
-
 				readDirTree(dirName);
 			}
 
 			foreach (string fileName in Directory.GetFiles(path))
 			{
-				// if (crtlC) return;
-
 				if (!Path.GetFileName(fileName).Equals("Runn-R.exe", StringComparison.OrdinalIgnoreCase))
 				{
 					allFiles.Add(fileName);
